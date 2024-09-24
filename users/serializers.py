@@ -1,7 +1,13 @@
 # serializers.py
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
-from .models import User, MachineCheck, FaceCheck, Payment, Amount, ChatLog, SupportRequest
+from .models import User, MachineCheck, FaceCheck, Payment, Amount, ChatLog, SupportRequest, DemoData
+
+
+class DemoDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DemoData
+        fields = ['id', 'country_code', 'phone_number']
 
 
 class UserSerializer(serializers.ModelSerializer):

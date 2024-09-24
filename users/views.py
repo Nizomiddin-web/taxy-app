@@ -9,11 +9,11 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import User, MachineCheck, FaceCheck, Payment, Amount, SupportRequest, ChatLog
+from .models import User, MachineCheck, FaceCheck, Payment, Amount, SupportRequest, ChatLog, DemoData
 
 # Create your views here.
 from .serializers import UserSerializer, MachineCheckSerializer, FaceCheckSerializer, PaymentSerializer, \
-    AmountSerializer, SupportRequestSerializer, ChatLogSerializer
+    AmountSerializer, SupportRequestSerializer, ChatLogSerializer, DemoDataSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -364,3 +364,17 @@ class ActiveSupportRequestAPIView(APIView):
             return Response(SupportRequestSerializer(support_request).data, status=status.HTTP_200_OK)
         else:
             return Response({"detail": "Faol muloqot topilmadi."}, status=status.HTTP_404_NOT_FOUND)
+
+
+class DemoDataByPhoneView(APIView):
+    def get(self, request, country_code, phone_number):
+        try:
+            # Phone number va country code bo'yicha ma'lumot topish
+            demo_data = DemoData.objects.get(phone_number=phone_number, country_code=country_code)
+            serializer = DemoDataSerializer(demo_data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except DemoData.DoesNotExist:
+            return Response(
+                {"error": "Ma'lumot topilmadi."},
+                status=status.HTTP_404_NOT_FOUND
+            )
