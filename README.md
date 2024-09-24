@@ -1,4 +1,6 @@
 # Loyihani Nomi: Taxy-app
+![https://example.com/image.png](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr8Mi0DO-UGvB6Sr7o7AsiITmzIkzv_hY_RQ&s)
+
 
 ## Loyihaning Tavsifi
 Taxy-app loyihasi, taksilarni onlayn tarzda buyurtma qilish va boshqarish imkonini beruvchi mobil ilova yoki veb ilovadir. Loyihada to'lov tizimlari integratsiyalangan bo'ladi, bu foydalanuvchilarga oson va qulay to'lov imkoniyatlarini taqdim etadi.
