@@ -125,6 +125,20 @@ USE_I18N = True
 
 USE_TZ = True
 
+# your_project/settings.py
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Redis ga mos keladigan manzil
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'reset-status-every-24-hours': {
+        'task': 'your_app.tasks.reset_status_after_24_hours',
+        'schedule': crontab(minute="0", hour='*'),  # Har soatning boshida bajariladi
+    },
+}
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
